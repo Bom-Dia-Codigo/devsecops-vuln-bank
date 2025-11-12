@@ -455,3 +455,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 Made with ❤️ for Security Education
+
+This is a fork of Commando-X/vuln-bank, this fork and changes were made for didatic and integrity purposes. Thanks Commando-X, counts on me :)
