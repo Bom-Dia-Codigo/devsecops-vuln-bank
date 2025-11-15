@@ -3,13 +3,16 @@ version: '3.8'
 services:
   web:
     build: .
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"
+      - "80:5000"
+      # - "443:5000" 
+
     environment:
       - DB_NAME=vulnerable_bank
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_HOST=db
+      - DB_HOST=db 
       - DB_PORT=5432
     depends_on:
       - db
@@ -24,30 +27,15 @@ services:
       - POSTGRES_DB=vulnerable_bank
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - vuln_network
 
-  caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - web
-    networks:
-      - vuln_network
-
 volumes:
   postgres_data:
-  caddy_data:
-  caddy_config:
 
 networks:
   vuln_network:

@@ -1,0 +1,3 @@
+bdc-vuln-bank.eastus2.cloudapp.azure.com
+
+reverse_proxy web:5000
